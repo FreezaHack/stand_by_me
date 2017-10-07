@@ -7,7 +7,7 @@ $(function(){
   // 起こすボタンクリック
   navM.click(function(){
     // 起こされたメッセージを表示
-    standMessage();
+    happyMessage();
   });
 
   // リセットボタンを押すともう一度タイマーセット。
@@ -26,12 +26,38 @@ $(function(){
   });
 
   // 起こされたメッセージと画像表示
-  function standMessage(){
+  function happyMessage(){
+    
+    // 美女メッセージを追加
+    $('.main-bijo-message-text').empty();
+    $('.main-bijo-message-text').append('おはよう。起こしてくれてありがとう');
+
+    // ポイントアニメーション
+    $('.main-bijo-point-in').animate({width: "75%"});
+
+    // 画像表示
     content.css('background-image', 'url(../../assets/images/people/stand.jpg)');
+    // ナビゲーション非表示
     navM.css('display', 'none');
+    // メッセージを表示
     bijoM.css('display', 'block');
   }
 
+  // 起こすのが遅かった場合
+  function angryMessage(){
+    $('.main-bijo-message-text').empty();
+    $('.main-bijo-message-text').append('遅いじゃない！');
+
+    // ポイントアニメーション
+    $('.main-bijo-point-in').animate({width: "25%"});
+
+    // 画像表示
+    content.css('background-image', 'url(../../assets/images/people/angry.jpg)');
+    // ナビゲーション非表示
+    navM.css('display', 'none');
+    // メッセージを表示
+    bijoM.css('display', 'block');
+  }
 
   // 以下、音声認識
   var flag_speech = 0;
@@ -77,10 +103,18 @@ $(function(){
         }
         // 話しかけてる途中の処理
         else {
-          // 何か言ったら次へ
-          if(results[i][0].transcript){
+          console.log(results[i][0].transcript);
+          // おはようというとhappyMessageアニメーション
+          if(results[i][0].transcript == 'おはよう' ||  results[i][0].transcript == 'お早う'){
             console.log(results[i][0].transcript);
-            standMessage();
+            happyMessage();
+            end = true;
+            return;
+          }
+          // 遅れてごめんというとhappyMessageアニメーション
+          if(results[i][0].transcript == '遅れてごめん'){
+            console.log(results[i][0].transcript);
+            angryMessage();
             end = true;
             return;
           }

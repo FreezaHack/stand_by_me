@@ -75,14 +75,7 @@
   background: #333;
   height: 50px;
   width: 50%;
-
-  animation-name: main-bijo-point-anime;
   animation-duration: 2s;
   animation-timing-function: ease;
   animation-iteration-count: 1;
-}
-
-@keyframes main-bijo-point-anime {
-  0% {width: 0;}
-  100% {width: 50%;}
 }
