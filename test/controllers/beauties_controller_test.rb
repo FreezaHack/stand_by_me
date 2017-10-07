@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class BeautyControllerTest < ActionDispatch::IntegrationTest
+class BeautiesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get beauty_index_url
+    get beauties_index_url
     assert_response :success
   end
 
