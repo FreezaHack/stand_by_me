@@ -1,0 +1,29 @@
+.phones {
+  position: relative;
+  width: 518px;
+  margin-bottom: 30px;
+}
+.image.phone {
+  float: left;
+  margin: 0 20px;
+}
+
+.phones p {
+  position: absolute;
+  top: 40%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.phones-left {
+  left: 130px;
+  border-width: 25px 43px 25px 0;
+  border-color: transparent #ffffff transparent transparent;
+}
+
+.phones-right {
+  right: 130px;
+  border-width: 25px 0 25px 43px;
+  border-color: transparent transparent transparent #ffffff;
+}

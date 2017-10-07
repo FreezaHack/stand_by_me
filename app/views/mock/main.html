@@ -1,53 +1,42 @@
 <!DOCTYPE HTML>
-<!--
-	Fractal by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
-	<title>Fractal by HTML5 UP</title>
+	<title>美女を起こそう</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="../../assets/stylesheets/mock/common.css" />
-	<link rel="stylesheet" href="../../assets/stylesheets/mock/style.css" />
-	<link rel="stylesheet" href="../../assets/stylesheets/mock/main.css" />
+	<link rel="stylesheet" href="../../assets/stylesheets/mock/reset.css">
+	<link rel="stylesheet" href="../../assets/stylesheets/mock/main.css">
 </head>
-<body id="top">
-<!-- Header -->
-<header id="header">
-	<div class="myPage">マイページへ</div>
-	<div class="content">
-		<h1><a href="#">起こす時間</a></h1>
-		<form>
-			<input name="stand-time-our" type="number" value="06">
-			<input name="stand-time-minute" type="number" value="06">
-		</form>
-		<ul class="actions">
-			<li><p id="timer-btn" class="button icon fa-chevron-down scrolly">決定</p></li>
-		</ul>
+<body>
+
+	<div class="main-content">
+
+		<div class="main-timer main-box">
+			<h1>起こす時間を設定してね</h1>
+ 			<form>
+				<input class="main-timer-our" name="time-our" type="number" value="07">
+				<input class="main-timer-minute" name="time-minute" type="number" value="30">
+			</form>
+			<p class="main-timer-button main-button" >決定</p>
+		</div>
+
+		<div class="main-nav-message main-box">
+			<p>「おはよう」というと起こせます</p>
+		</div>
+
+		<div class="main-bijo-message main-box">
+			<p>おはよう。起こしてくれてありがとう。</p>
+			<p>好感度</p>
+			<span class="main-bijo-point">
+				<span class="main-bijo-point-in"></span>
+			</span>
+			<!--<p class="main-camera-btn">ツーショットを撮る</p>-->
+			<p class="main-reset-btn main-button">もう一度起こす時間をセット</p>
+		</div>
+
 	</div>
 
-	<div class="bg-blue" id="nav-message">
-		<p>「おはよう」というと起こせます</p>
-	</div>
-
-	<div class="bg-blue" id="bijo-message">
-		<p>おはよう。起こしてくれてありがとう。</p>
-		<p>好感度</p>
-		<span class="bijo-point">
-			<span class="bijo-point-in"></span>
-		</span>
-		<p id="camera-btn" class="button icon fa-chevron-down scrolly">ツーショットを撮る</p>
-		<!--<p id="reset-btn" class="button icon fa-chevron-down scrolly">もう一度タイマーセット</p>-->
-	</div>
-
-
-</header>
-
-<!-- Scripts -->
 <script src="../../assets/javascripts/mock/jquery.min.js"></script>
-<script src="../../assets/javascripts/mock/main.js"></script>
 <script src="../../assets/javascripts/mock/main.js"></script>
 
 </body>

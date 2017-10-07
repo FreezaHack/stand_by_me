@@ -1,30 +1,25 @@
 $(function(){
-  var header = $('#header');
-  var content = $('.content');
-  var navM = $('#nav-message');
-  var bijoM = $('#bijo-message');
-
-  $('#camera-btn').click(function () {
-
-  });
+  var content = $('.main-content');
+  var timer = $('.main-timer');
+  var navM = $('.main-nav-message');
+  var bijoM = $('.main-bijo-message');
 
   // 起こすボタンクリック
-  $('#nav-message').click(function(){
+  navM.click(function(){
     // 起こされたメッセージを表示
     standMessage();
   });
 
   // リセットボタンを押すともう一度タイマーセット。
-  $('#reset-btn').click(function(){
-    header.css('background-image', 'url(../images/stand.jpg)');
-    content.css('display', 'block');
+  $('.main-reset-btn').click(function(){
+    content.css('background-image', 'url(../../assets/images/people/sleep.jpg)');
+    timer.css('display', 'block');
     bijoM.css('display', 'none');
   });
 
   // タイマーボタンを押すとタイマーをセット
-  $('#timer-btn').click(function(){
-    console.log("set");
-    content.css('display', 'none');
+  $('.main-timer-button').click(function(){
+    timer.css('display', 'none');
     navM.css('display', 'block');
     vr_function();
     return false;
@@ -32,7 +27,7 @@ $(function(){
 
   // 起こされたメッセージと画像表示
   function standMessage(){
-    header.css('background-image', 'url(../../images/stand.jpg)');
+    content.css('background-image', 'url(../../assets/images/people/stand.jpg)');
     navM.css('display', 'none');
     bijoM.css('display', 'block');
   }
@@ -71,16 +66,17 @@ $(function(){
     recognition.onresult = function(event) {
       var results = event.results;
       for (var i = event.resultIndex; i < results.length; i++) {
+        // 音声が完全に取得された場合の処理
         if (results[i].isFinal)
         {
           // おはようといったら次に進むけど省略
           // if(results[i][0].transcript == "おはよう"){
-            console.log(results[i][0].transcript);
+          //   console.log(results[i][0].transcript);
           // }
           vr_function();
         }
+        // 話しかけてる途中の処理
         else {
-
           // 何か言ったら次へ
           if(results[i][0].transcript){
             console.log(results[i][0].transcript);
