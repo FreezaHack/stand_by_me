@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-
   devise_for :users
   root "top#index"
+  resource :beauties
+  get 'beauties/index'
   get 'top/index'
 
 
