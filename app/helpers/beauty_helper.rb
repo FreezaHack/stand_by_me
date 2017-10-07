@@ -1,0 +1,2 @@
+module BeautyHelper
+end
