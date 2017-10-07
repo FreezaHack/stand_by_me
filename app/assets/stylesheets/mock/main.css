@@ -1,0 +1,62 @@
+#header {
+  position: relative;
+  background-image: url(../../images/people/sleep.jpg);
+  background-size: cover;
+}
+
+.myPage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #4f99e3;
+}
+
+.content {
+  background: #4f99e3;
+  padding: 20px;
+}
+
+input {
+}
+
+#nav-message {
+  display: none;
+}
+#bijo-message {
+  display: none;
+}
+
+.bg-blue {
+  background: #4f99e3;
+  padding: 20px;
+}
+
+.button {
+  width: 100% !important;
+  line-height: 42px !important;
+}
+
+.bijo-point {
+  display: block;
+  margin: 10px 0;
+  border: 1px solid white;
+  width: 100%;
+  height: 50px;
+}
+
+.bijo-point-in {
+  display: block;
+  background: white;
+  height: 48px;
+  width: 100%;
+
+  animation-name: anime1;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+}
+
+@keyframes anime1 {
+  0% {width: 0;}
+  100% {width: 100%;}
+}
