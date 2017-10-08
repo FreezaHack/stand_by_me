@@ -1,14 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>STAND BY ME</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel='stylesheet' type='text/css' href='../../assets/stylesheets/mock/ress.min.css'>
-    <link rel='stylesheet' type='text/css' href='../../assets/stylesheets/mock/select.css'>
-  </head>
-  <body>
-    <div class="select-bg">
+<div class="select-bg">
       <div class="select-wrapper">
         <div class="select-message">
           <h1><span>好きな子を選んでね!</span></h1>
@@ -21,13 +11,10 @@
             <p>
               <%= beatuty.hobby %>
             </p>
-            <a class="select-button" href="/beauties/#{beatuty.id}">SELECT</a>
+            <a class="select-button" href="/beauties/<%= beatuty.id %>">SELECT</a>
             <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="../../assets/javascripts/mock/jquery.min.js"></script>
-  </body>
-</html>
