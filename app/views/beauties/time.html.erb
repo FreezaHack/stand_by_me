@@ -1,0 +1,13 @@
+起こす時間
+<% if @times.blank? %>
+    <%= form_for(@wakeup,:url => {:action => :time_set} ) do |f| %>
+        <%= hidden_field_tag :user_id, current_user.id %>
+        <%= hidden_field_tag :achievement, false %>
+        <%= f.datetime_field :wake_up_time %>
+        <%= f.submit "決定", class: "" %>
+
+    <% end %>
+<% else %>
+    現在の設定時間
+    <%= @times.wake_up_time.strftime("%Y年%m月%d日 %H時%M分") %>
+<% end %>

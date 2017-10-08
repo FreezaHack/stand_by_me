@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    var recognizing;
+    window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.lang = "ja-JP";
+//    reset();
+    recognition.onend = function() {
+        reset();
+    }
+
+    recognition.onresult = function (event) {
+//        for (var i = 0; i < event.results.length; ++i) {
+//            if (event.results.final) {
+//                textarea.value += event.results[0][0].transcript;
+//            }
+//        }
+        if(event.results.length > 0){
+            textarea.value = event.results[0][0].transcript;
+            recognition.stop();
+            reset();
+        }
+    }
+
+    function reset() {
+        recognizing = false;
+        button.innerHTML = "話しかけてね";
+    }
+
+    function toggleStartStop() {
+        if (recognizing) {
+            recognition.stop();
+            reset();
+        } else {
+            recognition.start();
+            recognizing = true;
+            button.innerHTML = "ストップ";
+        }
+    }
+</script>
+<% if @time.blank? %>
+    <%= link_to "起こす時間を設定してください",wake_up_set_url %>
+<% else %>
+    <p><%= @time.wake_up_time.strftime("%Y年%m月%d日 %H時%M分") %>に起こしてください</p>
+<% end %>
+<%= @beauties.name %>
+<textarea id="textarea" rows=10 cols=20 style="font-size: 32px"></textarea>
+<button id="button" onclick="toggleStartStop()">話かける！！</button>
