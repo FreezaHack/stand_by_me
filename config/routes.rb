@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root "top#index"
-  resource :beauties
+  # resource :beauties, only: %i(show), param: :id
   get 'beauties/index'
+  get 'beauties/:id' => 'beauties#show', as: 'beauties'
+  get 'time_set' => 'beauties#time', as: 'wake_up_set'
+  post 'time_set' => 'beauties#time_set', as: 'wake_up_create'
   get 'top/index'
 
 

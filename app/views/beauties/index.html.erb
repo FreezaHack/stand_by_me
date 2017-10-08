@@ -1,5 +1,8 @@
 <% @beauties.each do |beatuty| %>
-  <p><%= beatuty.name %></p>
-  <p><%= beatuty.hobby %></p>
-  <p><%= beatuty.character %></p>
+    <p><%= beatuty.name %></p>
+    <p><%= beatuty.hobby %></p>
+    <p><%= beatuty.character %></p>
+
+    <%= link_to '決定', "/beauties/#{beatuty.id}" %>
 <% end %>
+
