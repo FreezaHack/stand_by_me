@@ -13,7 +13,8 @@
     		// 起こすボタンクリック
     		navM.click(function(){
     			// morningへリンク
-    			window.open('/morning');
+            var url = document.URL;
+            location.href = url + "/morning";
     			// 起こされたメッセージを表示
     			// happyMessage();
     		});
@@ -62,7 +63,8 @@
     						if(results[i][0].transcript == 'おはよう' ||  results[i][0].transcript == 'お早う' ||  results[i][0].transcript == '火曜'){
     							console.log(results[i][0].transcript);
     							// morningへリンク
-    							window.open('/morning');
+                  var url = document.URL;
+    							location.href = url + "/morning";
     						}
     					}
     				}
@@ -81,5 +83,10 @@
     <p><%= @time.wake_up_time.strftime("%Y年%m月%d日 %H時%M分") %>に起こしてください</p>
 <% end %>
 <%= @beauties.name %>
-<textarea id="textarea" rows=5 cols=10 style="font-size: 32px"></textarea>
-<button id="button" onclick="toggleStartStop()"></button>
+<div class="main-content" style=" background-image: url(<%= image_path("people/sleep.jpg") %> ) ">
+
+  <div class="main-nav-message main-box">
+    <p>「おはよう」と話しかけてね</p>
+  </div>
+
+</div>
