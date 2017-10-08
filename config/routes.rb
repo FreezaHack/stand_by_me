@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "top#index"
+  root "beauties#index"
   # resource :beauties, only: %i(show), param: :id
   get 'beauties/index' => 'beauties#index', as: 'beauties_index'
   get 'beauties/:id' => 'beauties#show', as: 'beauties'
