@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>美女を起こそう</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="../../assets/stylesheets/mock/reset.css">
+	<link rel="stylesheet" href="../../assets/stylesheets/mock/main.css">
+</head>
+<body>
+
+<div class="main-content">
+
+	<div class="main-bijo-message main-box">
+		<p class="main-bijo-message-text"></p>
+		<p>好感度</p>
+			<span class="main-bijo-point">
+				<span class="main-bijo-point-in"></span>
+			</span>
+		<!--<p class="main-camera-btn">ツーショットを撮る</p>-->
+		<p class="main-reset-btn main-button">もう一度起こす時間をセット</p>
+	</div>
+
+</div>
+
+<script src="../../assets/javascripts/mock/jquery.min.js"></script>
+<script>
+$(function(){
+
+	var bijoM = $('.main-bijo-message');
+
+	// リセットボタンを押すとタイマーセットページへ。
+	$('.main-reset-btn').click(function(){
+		window.open('/time');
+	});
+
+	happyMessage();
+
+	// 起こされたメッセージと画像表示
+ function happyMessage(){
+
+   // 美女メッセージを追加
+   $('.main-bijo-message-text').empty();
+   $('.main-bijo-message-text').append('おはよう。起こしてくれてありがとう');
+
+   // ポイントアニメーション
+   $('.main-bijo-point-in').animate({width: "75%"});
+
+   // 画像表示
+   $('.main-content').css('background-image', 'url(../../assets/images/people/stand.jpg)');
+   // メッセージを表示
+   bijoM.css('display', 'block');
+ }
+
+});
+</script>
+
+</body>
+</html>

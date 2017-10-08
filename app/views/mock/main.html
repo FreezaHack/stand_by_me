@@ -11,27 +11,8 @@
 
 	<div class="main-content">
 
-		<div class="main-timer main-box">
-			<h1>起こす時間を設定してね</h1>
- 			<form>
-				<input class="main-timer-our" name="time-our" type="number" value="07">
-				<input class="main-timer-minute" name="time-minute" type="number" value="30">
-			</form>
-			<p class="main-timer-button main-button" >決定</p>
-		</div>
-
 		<div class="main-nav-message main-box">
-			<p>「おはよう」というと起こせます</p>
-		</div>
-
-		<div class="main-bijo-message main-box">
-			<p class="main-bijo-message-text"></p>
-			<p>好感度</p>
-			<span class="main-bijo-point">
-				<span class="main-bijo-point-in"></span>
-			</span>
-			<!--<p class="main-camera-btn">ツーショットを撮る</p>-->
-			<p class="main-reset-btn main-button">もう一度起こす時間をセット</p>
+			<p>「おはよう」と話しかけてね</p>
 		</div>
 
 	</div>
@@ -45,6 +26,9 @@
 		var navM = $('.main-nav-message');
 		var bijoM = $('.main-bijo-message');
 
+		// 音声認識開始
+		vr_function();
+
 		// 起こすボタンクリック
 		navM.click(function(){
 			// morningへリンク
@@ -52,55 +36,6 @@
 			// 起こされたメッセージを表示
 			// happyMessage();
 		});
-
-		// リセットボタンを押すともう一度タイマーセット。
-		$('.main-reset-btn').click(function(){
-			content.css('background-image', 'url(../../assets/images/people/sleep.jpg)');
-			timer.css('display', 'block');
-			bijoM.css('display', 'none');
-		});
-
-		// タイマーボタンを押すとタイマーをセット
-		$('.main-timer-button').click(function(){
-			timer.css('display', 'none');
-			navM.css('display', 'block');
-			vr_function();
-			return false;
-		});
-
-		// 起こされたメッセージと画像表示
-		// function happyMessage(){
-		//
-		//   // 美女メッセージを追加
-		//   $('.main-bijo-message-text').empty();
-		//   $('.main-bijo-message-text').append('おはよう。起こしてくれてありがとう');
-		//
-		//   // ポイントアニメーション
-		//   $('.main-bijo-point-in').animate({width: "75%"});
-		//
-		//   // 画像表示
-		//   content.css('background-image', 'url(../../assets/images/people/stand.jpg)');
-		//   // ナビゲーション非表示
-		//   navM.css('display', 'none');
-		//   // メッセージを表示
-		//   bijoM.css('display', 'block');
-		// }
-
-		// 起こすのが遅かった場合
-		// function angryMessage(){
-		//   $('.main-bijo-message-text').empty();
-		//   $('.main-bijo-message-text').append('遅いじゃない！');
-		//
-		//   // ポイントアニメーション
-		//   $('.main-bijo-point-in').animate({width: "25%"});
-		//
-		//   // 画像表示
-		//   content.css('background-image', 'url(../../assets/images/people/angry.jpg)');
-		//   // ナビゲーション非表示
-		//   navM.css('display', 'none');
-		//   // メッセージを表示
-		//   bijoM.css('display', 'block');
-		// }
 
 		// 以下、音声認識
 		var flag_speech = 0;
@@ -138,10 +73,6 @@
 					// 音声が完全に取得された場合の処理
 					if (results[i].isFinal)
 					{
-						// おはようといったら次に進むけど省略
-						// if(results[i][0].transcript == "おはよう"){
-						//   console.log(results[i][0].transcript);
-						// }
 						vr_function();
 					}
 					// 話しかけてる途中の処理
@@ -150,23 +81,9 @@
 						// おはようというとhappyMessageアニメーション
 						if(results[i][0].transcript == 'おはよう' ||  results[i][0].transcript == 'お早う' ||  results[i][0].transcript == '火曜'){
 							console.log(results[i][0].transcript);
-
 							// morningへリンク
 							window.open('/morning');
-
-							// happyMessage();
-							// end = true;
-							// return;
 						}
-
-						// 遅れてごめんというとhappyMessageアニメーション
-						// if(results[i][0].transcript == '遅れてごめん'){
-						//   console.log(results[i][0].transcript);
-						//   angryMessage();
-						//   end = true;
-						//   return;
-						// }
-						// flag_speech = 1;
 					}
 				}
 			};
@@ -175,7 +92,7 @@
 			recognition.start();
 
 		} // end 音声認識
-		
+
 	});
 
 </script>
