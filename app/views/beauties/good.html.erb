@@ -1,1 +1,51 @@
-<%= @fav.point %>
+<div class="main-content">
+
+<div class="main-bijo-message main-box">
+  <p class="main-bijo-message-text"></p>
+  <p>好感度</p>
+  <span class="main-bijo-point">
+				<span class="main-bijo-point-in"></span>
+			</span>
+  <!--<p class="main-camera-btn">ツーショットを撮る</p>-->
+  <p class="main-reset-btn main-button">もう一度起こす時間をセット</p>
+  <%= @fav.point %>
+</div>
+
+<audio class="main-audio" src="<%= image_path('good_voice.mp3') %>" preload="auto" autoplay></audio>
+
+
+</div>
+
+
+
+<script>
+    $(function(){
+
+        var bijoM = $('.main-bijo-message');
+
+        // リセットボタンを押すとタイマーセットページへ。
+        $('.main-reset-btn').click(function(){
+            window.open('/time');
+        });
+
+        happyMessage();
+
+        // 起こされたメッセージと画像表示
+        function happyMessage(){
+            // 美女メッセージを追加
+            $('.main-bijo-message-text').append('おはよう。起こしてくれてありがとう！');
+            // 画像表示
+            $('.main-content').css('background-image', "url(<%= image_path('people/stand.jpg') %>)");
+            // メッセージを表示
+            bijoM.css('display', 'block');
+
+            setTimeout(function(){
+                // ポイントアニメーション
+                $('.main-bijo-point-in').animate({width:"<%= @point  %>%" });
+                console.log(<%= @point %>);
+            },1000);
+
+        }
+
+    });
+</script>

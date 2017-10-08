@@ -38,6 +38,8 @@ class BeautiesController < ApplicationController
     @fav = Favor.where(user_id: current_user.id).where(beauty_id: params[:id]).first
     @fav.point = @fav.point + 1
     @fav.save
+    @point = @fav.point * 100 / 15
+    @point = 100 if @point > 15
 
   end
 
@@ -45,6 +47,8 @@ class BeautiesController < ApplicationController
     @fav = Favor.where(user_id: current_user.id).where(beauty_id: params[:id]).first
     @fav.point = @fav.point - 1
     @fav.save
+    @point = @fav.point * 100 / 15
+    @point = 0 if @point < 1
 
   end
 
