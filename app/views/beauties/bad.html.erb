@@ -14,7 +14,6 @@
 
 </div>
 
-<%= @fav.point %>
 
 <script>
     $(function(){
@@ -23,7 +22,7 @@
 
         // リセットボタンを押すとタイマーセットページへ。
         $('.main-reset-btn').click(function(){
-            window.open('/time');
+            location.href = "/time_set";
         });
 
         happyMessage();
