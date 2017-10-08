@@ -1,42 +1,79 @@
 <script type="text/javascript">
-    var recognizing;
-    window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-    var recognition = new SpeechRecognition();
-    recognition.continuous = true;
-    recognition.lang = "ja-JP";
-//    reset();
-    recognition.onend = function() {
-        reset();
-    }
 
-    recognition.onresult = function (event) {
-//        for (var i = 0; i < event.results.length; ++i) {
-//            if (event.results.final) {
-//                textarea.value += event.results[0][0].transcript;
-//            }
-//        }
-        if(event.results[0][0].transcript.length > 0){
-            textarea.value = event.results[0][0].transcript;
-            recognition.stop();
-            reset();
-        }
-    }
+    	$(function(){
 
-    function reset() {
-        recognizing = false;
-        button.innerHTML = "話しかけてね";
-    }
+    		var content = $('.main-content');
+    		var timer = $('.main-timer');
+    		var navM = $('.main-nav-message');
+    		var bijoM = $('.main-bijo-message');
 
-    function toggleStartStop() {
-        if (recognizing) {
-            recognition.stop();
-            reset();
-        } else {
-            recognition.start();
-            recognizing = true;
-            button.innerHTML = "ストップ";
-        }
-    }
+    		// 音声認識開始
+    		vr_function();
+
+    		// 起こすボタンクリック
+    		navM.click(function(){
+    			// morningへリンク
+    			window.open('/morning');
+    			// 起こされたメッセージを表示
+    			// happyMessage();
+    		});
+
+    		// 以下、音声認識
+    		var flag_speech = 0;
+    		var end = false;
+
+    		function vr_function() {
+    			window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+    			var recognition = new webkitSpeechRecognition();
+    			recognition.lang = 'ja';
+    			recognition.interimResults = true;
+    			recognition.continuous = true;
+
+    			recognition.onsoundstart = function() {
+    			};
+    			recognition.onnomatch = function() {
+    			};
+    			recognition.onerror = function() {
+    				if(flag_speech == 0)
+    					vr_function();
+    			};
+    			
+    			recognition.onsoundend = function() {
+    				if(end){
+    					return;
+    				}
+    				vr_function();
+    			};
+
+    			var end = false;
+
+    			recognition.onresult = function(event) {
+    				var results = event.results;
+    				for (var i = event.resultIndex; i < results.length; i++) {
+    					// 音声が完全に取得された場合の処理
+    					if (results[i].isFinal)
+    					{
+    						vr_function();
+    					}
+    					// 話しかけてる途中の処理
+    					else {
+    						console.log(results[i][0].transcript);
+    						// おはようというとhappyMessageアニメーション
+    						if(results[i][0].transcript == 'おはよう' ||  results[i][0].transcript == 'お早う' ||  results[i][0].transcript == '火曜'){
+    							console.log(results[i][0].transcript);
+    							// morningへリンク
+    							window.open('/morning');
+    						}
+    					}
+    				}
+    			};
+
+    			flag_speech = 0;
+    			recognition.start();
+
+    		} // end 音声認識
+
+    	});
 </script>
 <% if @time.blank? %>
     <%= link_to "起こす時間を設定してください",wake_up_set_url %>

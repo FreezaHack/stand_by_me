@@ -11,33 +11,91 @@
 
 	<div class="main-content">
 
-		<div class="main-timer main-box">
-			<h1>起こす時間を設定してね</h1>
- 			<form>
-				<input class="main-timer-our" name="time-our" type="number" value="07">
-				<input class="main-timer-minute" name="time-minute" type="number" value="30">
-			</form>
-			<p class="main-timer-button main-button" >決定</p>
-		</div>
-
 		<div class="main-nav-message main-box">
-			<p>「おはよう」というと起こせます</p>
-		</div>
-
-		<div class="main-bijo-message main-box">
-			<p class="main-bijo-message-text"></p>
-			<p>好感度</p>
-			<span class="main-bijo-point">
-				<span class="main-bijo-point-in"></span>
-			</span>
-			<!--<p class="main-camera-btn">ツーショットを撮る</p>-->
-			<p class="main-reset-btn main-button">もう一度起こす時間をセット</p>
+			<p>「おはよう」と話しかけてね</p>
 		</div>
 
 	</div>
 
 <script src="../../assets/javascripts/mock/jquery.min.js"></script>
-<script src="../../assets/javascripts/mock/main.js"></script>
+<script>
+	$(function(){
+
+		var content = $('.main-content');
+		var timer = $('.main-timer');
+		var navM = $('.main-nav-message');
+		var bijoM = $('.main-bijo-message');
+
+		// 音声認識開始
+		vr_function();
+
+		// 起こすボタンクリック
+		navM.click(function(){
+			// morningへリンク
+			window.open('/morning');
+			// 起こされたメッセージを表示
+			// happyMessage();
+		});
+
+		// 以下、音声認識
+		var flag_speech = 0;
+		var end = false;
+
+		function vr_function() {
+			window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+			var recognition = new webkitSpeechRecognition();
+			recognition.lang = 'ja';
+			recognition.interimResults = true;
+			recognition.continuous = true;
+
+			recognition.onsoundstart = function() {
+			};
+			recognition.onnomatch = function() {
+			};
+			recognition.onerror = function() {
+				if(flag_speech == 0)
+					vr_function();
+			};
+
+			//何も言わなかった時は次のビデオを再生する
+			recognition.onsoundend = function() {
+				if(end){
+					return;
+				}
+				vr_function();
+			};
+
+			var end = false;
+
+			recognition.onresult = function(event) {
+				var results = event.results;
+				for (var i = event.resultIndex; i < results.length; i++) {
+					// 音声が完全に取得された場合の処理
+					if (results[i].isFinal)
+					{
+						vr_function();
+					}
+					// 話しかけてる途中の処理
+					else {
+						console.log(results[i][0].transcript);
+						// おはようというとhappyMessageアニメーション
+						if(results[i][0].transcript == 'おはよう' ||  results[i][0].transcript == 'お早う' ||  results[i][0].transcript == '火曜'){
+							console.log(results[i][0].transcript);
+							// morningへリンク
+							window.open('/morning');
+						}
+					}
+				}
+			};
+
+			flag_speech = 0;
+			recognition.start();
+
+		} // end 音声認識
+
+	});
+
+</script>
 
 </body>
 </html>
