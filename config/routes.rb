@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'beauties/:id/morning' => 'beauties#morning', as: 'wake_up_morning'
   get 'beauties/:id/good' => 'beauties#good', as: 'morning_good'
   get 'beauties/:id/bad' => 'beauties#bad', as: 'morning_bad'
+  get 'camera' => 'beauties#camera', as: 'n_camera'
   get 'top/index'
 
 

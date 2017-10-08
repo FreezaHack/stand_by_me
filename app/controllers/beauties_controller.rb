@@ -52,5 +52,9 @@ class BeautiesController < ApplicationController
 
   end
 
+  def camera
+
+  end
+
 
 end

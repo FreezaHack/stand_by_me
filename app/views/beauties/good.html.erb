@@ -8,6 +8,9 @@
 			</span>
   <!--<p class="main-camera-btn">ツーショットを撮る</p>-->
   <p class="main-reset-btn main-button">もう一度起こす時間をセット</p>
+  <% if @fav.point > 14 %>
+      <a href="/camera"> <p class="main-button">ご褒美❤️</p></a>
+  <% end %>
   <%= @fav.point %>
 </div>
 
@@ -17,7 +20,6 @@
 </div>
 
 
-
 <script>
     $(function(){
 
@@ -25,7 +27,7 @@
 
         // リセットボタンを押すとタイマーセットページへ。
         $('.main-reset-btn').click(function(){
-            window.open('/time');
+            location.href = "/time_set";
         });
 
         happyMessage();
