@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<title>Self Camera</title>
+	<link rel="stylesheet" href="../../assets/stylesheets/mock/reset.css">
+	<meta charset="utf-8">
+	<style>
+		video#camera-video {
+			margin-bottom: 50px;
+		}
+		.camera-content {
+			width: 640px;
+			margin: 0 auto;
+			position: relative;
+		}
+
+		.camera-bijo {
+			position: absolute;
+			width: 640px;
+			top: 0;
+			left: 0;
+		}
+
+		.camera-input {
+			position: absolute;
+			left: 45%;
+			top: 495px;
+		}
+
+	</style>
+</head>
+<body>
+<div class="camera-content">
+	<video id="camera-video" width="640" height="480" autoplay="1" ></video>
+	<img class="camera-bijo" src="../../assets/images/two/twoshot.png">
+
+	<input class="camera-input" type="button" value="撮影する" onclick="copyFrame()" />
+
+	<canvas id="camera-canvas"></canvas>
+
+	<!--<div><img id="newImg"></div>-->
+	<!--<input type="button" value="画像に変換" onclick="chgImg()">-->
+</div>
+
+<script type="text/javascript">
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia;
+	window.URL = window.URL || window.webkitURL;
+
+	var video = document.getElementById('camera-video');
+	var localStream = null;
+	navigator.getUserMedia({video: true, audio: false},
+					function(stream) { // for success case
+						console.log(stream);
+						video.src = window.URL.createObjectURL(stream);
+					},
+					function(err) { // for error case
+						console.log(err);
+					}
+	);
+
+	// canvasに
+	function copyFrame() {
+		var cEle = document.getElementById('camera-canvas');
+		var cCtx = cEle.getContext('2d');
+		var vEle = document.getElementById('camera-video');
+
+		var bijo = new Image();
+		bijo.src = "../../assets/images/two/twoshot.png";
+
+		cEle.width  = vEle.videoWidth;   // canvasの幅と高さを、動画の幅と高さに合わせる
+		cEle.height = vEle.videoHeight;
+
+		cCtx.drawImage(vEle, 0, 0);  // canvasに関数実行時の動画のフレームを描画
+		cCtx.drawImage(bijo, 0, 0, 640, 480);
+	}
+
+	var cvs = document.getElementById("camera-canvas");
+	var ctx = cvs.getContext("2d");
+
+	//canvasデータを画像に変換にする関数
+	//	function chgImg()
+	//	{
+	//		var png = cvs.toDataURL();
+	//		document.getElementById("newImg").src = png;
+	//	}
+</script>
+
+</body>
+</html>
