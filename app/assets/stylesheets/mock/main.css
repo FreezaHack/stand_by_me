@@ -1,62 +1,81 @@
-#header {
-  position: relative;
+
+.main-content {
   background-image: url(../../images/people/sleep.jpg);
   background-size: cover;
+  position: relative;
+  height: 800px;
 }
 
-.myPage {
+/* main パーツ */
+.main-box {
+  width: 400px;
   position: absolute;
+  padding: 20px;
+  top: 300px;
   left: 0;
-  top: 0;
-  background: #4f99e3;
+  right: 0;
+  margin: auto;
+  background-color: white;
 }
 
-.content {
-  background: #4f99e3;
-  padding: 20px;
+.main-button {
+  margin: 20px 0;
+  border: 1px solid #333;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
 }
 
-input {
+.main-timer h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.main-timer form {
+  height: 50px;
 }
 
-#nav-message {
+.main-timer input {
+  display: block;
+  width: 46%;
+  height: 40px;
+  text-align: center;
+}
+
+.main-timer-our {
+  float: left;
+}
+
+.main-timer-minute {
+  float: right;
+}
+
+
+.main-nav-message {
   display: none;
 }
-#bijo-message {
+.main-bijo-message {
   display: none;
 }
 
-.bg-blue {
-  background: #4f99e3;
-  padding: 20px;
+.main-bijo-message p{
+  margin-bottom: 10px;
 }
 
-.button {
-  width: 100% !important;
-  line-height: 42px !important;
-}
-
-.bijo-point {
+.main-bijo-point {
   display: block;
   margin: 10px 0;
-  border: 1px solid white;
+  border: 1px solid #333;
   width: 100%;
   height: 50px;
 }
 
-.bijo-point-in {
+.main-bijo-point-in {
   display: block;
-  background: white;
-  height: 48px;
-  width: 100%;
-
-  animation-name: anime1;
+  background: #333;
+  height: 50px;
+  width: 50%;
   animation-duration: 2s;
   animation-timing-function: ease;
   animation-iteration-count: 1;
-}
-
-@keyframes anime1 {
-  0% {width: 0;}
-  100% {width: 100%;}
 }
