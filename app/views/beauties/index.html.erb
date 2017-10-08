@@ -4,16 +4,16 @@
           <h1><span>好きな子を選んでね!</span></h1>
         </div>
         <div class="select-container">
+          <% @beauties.each do |beatuty| %>
           <div class="select-woman-container">
-            <% @beauties.each do |beatuty| %>
             <div class="select-img-frame"><%= image_tag("select/bijyo_#{beatuty.id}.jpg") %></div>
             <h2><%= beatuty.name %></h2>
             <p>
               <%= beatuty.hobby %>
             </p>
             <a class="select-button" href="/beauties/<%= beatuty.id %>">SELECT</a>
-            <% end %>
             </div>
+            <% end %>
           </div>
         </div>
       </div>
