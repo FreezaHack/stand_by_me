@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171007074448) do
+ActiveRecord::Schema.define(version: 20171008034418) do
 
   create_table "beauties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171007074448) do
   create_table "favors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
     t.integer "point"
-    t.integer "beatuty_id"
+    t.integer "beauty_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

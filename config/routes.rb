@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'beauties/:id' => 'beauties#show', as: 'beauties'
   get 'time_set' => 'beauties#time', as: 'wake_up_set'
   post 'time_set' => 'beauties#time_set', as: 'wake_up_create'
+  get 'beauties/:id/morning' => 'beauties#morning', as: 'wake_up_morning'
+  get 'beauties/:id/good' => 'beauties#good', as: 'morning_good'
+  get 'beauties/:id/bad' => 'beauties#bad', as: 'morning_bad'
   get 'top/index'
 
 
