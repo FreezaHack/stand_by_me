@@ -1,8 +1,33 @@
-<% @beauties.each do |beatuty| %>
-    <p><%= beatuty.name %></p>
-    <p><%= beatuty.hobby %></p>
-    <p><%= beatuty.character %></p>
-
-    <%= link_to '決定', "/beauties/#{beatuty.id}" %>
-<% end %>
-
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>STAND BY ME</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel='stylesheet' type='text/css' href='../../assets/stylesheets/mock/ress.min.css'>
+    <link rel='stylesheet' type='text/css' href='../../assets/stylesheets/mock/select.css'>
+  </head>
+  <body>
+    <div class="select-bg">
+      <div class="select-wrapper">
+        <div class="select-message">
+          <h1><span>好きな子を選んでね!</span></h1>
+        </div>
+        <div class="select-container">
+          <div class="select-woman-container">
+            <% @beauties.each do |beatuty| %>
+            <div class="select-img-frame"><%= image_tag("select/bijyo_#{beatuty.id}.jpg") %></div>
+            <h2><%= beatuty.name %></h2>
+            <p>
+              <%= beatuty.hobby %>
+            </p>
+            <a class="select-button" href="/beauties/#{beatuty.id}">SELECT</a>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/javascripts/mock/jquery.min.js"></script>
+  </body>
+</html>
