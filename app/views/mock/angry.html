@@ -21,6 +21,8 @@
 		<p class="main-reset-btn main-button">もう一度起こす時間をセット</p>
 	</div>
 
+	<audio class="main-audio" src="../../assets/audio/bad_voice.mp3" preload="auto" autoplay></audio>
+
 </div>
 
 <script src="../../assets/javascripts/mock/jquery.min.js"></script>
@@ -38,17 +40,16 @@
 
 		// 起こされたメッセージと画像表示
 		function happyMessage(){
-
-			// 美女メッセージを追加
-			$('.main-bijo-message-text').empty();
 			$('.main-bijo-message-text').append('遅いじゃない！');
-
 			$('.main-bijo-point-in').addClass("main-bijo-angry");
 
-			// ポイントアニメーション
-			$('.main-bijo-point-in').animate({
-				width: "25%"
-		});
+			setTimeout(function(){
+
+				// ポイントアニメーション
+				$('.main-bijo-point-in').animate({
+					width: "25%"
+			},1000);
+		},1000);
 
 			// 画像表示
 			$('.main-content').css('background-image', 'url(../../assets/images/people/angry.jpg)');
