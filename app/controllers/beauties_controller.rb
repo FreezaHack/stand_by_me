@@ -6,6 +6,7 @@ class BeautiesController < ApplicationController
   def show
     @beauties = Beauty.find(params[:id])
     @time = WakeUp.find_by(user_id: current_user.id)
+    gon.wakeup = @time.wake_up_time
   end
 
   def time

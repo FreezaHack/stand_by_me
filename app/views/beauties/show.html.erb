@@ -15,12 +15,14 @@
 //                textarea.value += event.results[0][0].transcript;
 //            }
 //        }
-        if(event.results.length > 0){
+        if(event.results[0][0].transcript.length > 0){
             textarea.value = event.results[0][0].transcript;
             recognition.stop();
             reset();
         }
     }
+
+    var time = gon.wakeup; //設定した時間
 
     function reset() {
         recognizing = false;
@@ -44,5 +46,5 @@
     <p><%= @time.wake_up_time.strftime("%Y年%m月%d日 %H時%M分") %>に起こしてください</p>
 <% end %>
 <%= @beauties.name %>
-<textarea id="textarea" rows=10 cols=20 style="font-size: 32px"></textarea>
-<button id="button" onclick="toggleStartStop()">話かける！！</button>
+<textarea id="textarea" rows=5 cols=10 style="font-size: 32px"></textarea>
+<button id="button" onclick="toggleStartStop()"></button>
